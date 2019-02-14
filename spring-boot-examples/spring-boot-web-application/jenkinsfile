@@ -1,0 +1,35 @@
+node {
+   
+   stage('Preparation') { // for display purposes
+      // Get some code from a GitHub repository
+    //   git 'https://github.com/anit345/test.git'
+    git branch: 'master',
+    // credentialsId: '12345-1234-4696-af25-123455',
+    url: 'https://github.com/anit345/test.git'
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration. 
+     
+    //   mvnHome = /opt/maven/
+   }
+stage('Build it!!')
+    {
+        sh """
+            pwd
+            ls -lrt
+            /opt/maven/bin/mvn install -f spring-boot-examples/spring-boot-web-application/pom.xml
+        """
+ 
+    }
+    stage('Docker')
+    {
+        sh """
+         cd spring-boot-examples/spring-boot-web-application
+         pwd
+         ls -ltra
+         
+         docker build -t springboot .
+        """
+    }
+  
+}
