@@ -1,0 +1,6 @@
+FROM openjdk:8
+# COPY java.jar  /opt/java.jar
+ADD /opt/bitnami/apps/jenkins/jenkins_home/workspace/test/spring-boot-examples/spring-boot-web-application/target /OPT
+WORKDIR /OPT
+EXPOSE 80
+ENTRYPOINT ["JAVA","-JAR", ]
