@@ -1,0 +1,16 @@
+node {
+    stage ( 'scm checkout stage ') {
+        git 'https://github.com/anit345/test.git'
+    }
+    stage ( 'mvn package') {
+        sh '/opt/maven/bin/mvn package -f spring-boot-examples/spring-boot-web-application/pom.xml'
+       // sh 'spring-boot-examples/spring-boot-web-application/ package'
+    }
+    stage ('build docker image') {
+       // sh 'docker build -t kiran:2.0.0 .'
+       sh 'docker build -t kiran:2.0.0 -f spring-boot-examples/spring-boot-web-application/Dockerfile .'
+    }
+    stage ( 'deploy to kubernetes') {
+        // sh 'kubectl create -f deplyoment_svc_ingress.yml'
+    }
+}
