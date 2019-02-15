@@ -1,3 +1,3 @@
 FROM centos
-COPY target/*.jar /opt/java
+COPY spring-boot-examples/spring-boot-web-application/target/*.jar /opt/java
 WORKDIR /opt
